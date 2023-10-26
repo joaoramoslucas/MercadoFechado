@@ -1,15 +1,19 @@
 import React from "react";
-import styled from "styled-components/native";
-import { SafeAreaView, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import TabScreens from './src/routes/tab';
+
+interface Product {
+  id: string;
+  nome: string;
+  preco: number;
+}
+
 function App(): JSX.Element {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>OLÁ</Text>
-      </View>
-    </SafeAreaView>               
+    <NavigationContainer>
+      <TabScreens />
+    </NavigationContainer>
   );
 }
-const style = styled.Text
 
 export default App;
