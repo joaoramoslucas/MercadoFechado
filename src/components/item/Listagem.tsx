@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { formatCurrency } from "../../Utils/formatCurrency";
 
 interface ListagemProps {
     id: string
@@ -18,7 +19,7 @@ export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail }) =
             </View>
             <View style={styles.infoContainer}>
                 <Text style={styles.title}>{title}</Text>
-                <Text style={styles.text}>Preço: {price}</Text>
+                <Text style={styles.text}>{formatCurrency(price, 'BRL')}</Text>
             </View>
         </View>
     </TouchableOpacity>

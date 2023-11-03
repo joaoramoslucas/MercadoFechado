@@ -1,49 +1,41 @@
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React from 'react';
+import { Settings, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Home } from '../pages/Home';
-import { Setting } from '../Setting/Setting';
+import Casa from '../assets/home.svg'
+import Sacola from '../assets/sacola.svg';
+import { SecondScreen } from '../pages/Home/Setting/SecondScreen';
 
 const Tab = createBottomTabNavigator();
 
-export const TabScreens = () => {
+type TabScreensProps = {};
+
+export const TabScreens: React.FC<TabScreensProps> = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        tabBarHideOnKeyboard: true,
         headerShown: false,
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-        
-          if (route.name === 'Inicio') {
-            iconName = focused
-              ? 'ios-home' // Ícone da casa quando a guia está ativa
-              : 'ios-home-outline'; // Ícone da casa quando a guia está inativa
-          } else if (route.name === 'Sacola') {
-            iconName = focused
-              ? 'ios-basket' // Ícone da sacola quando a guia está ativa
-              : 'ios-basket-outline'; // Ícone da sacola quando a guia está inativa
+        tabBarIcon: ({ color }) => {
+          let Icon: React.FC<{ color: string }> = Casa; // Certifique-se de que Casa seja um componente React válido
+          if (route.name === 'Sacola') {
+            Icon = Sacola; // Atribua diretamente o componente Sacola à variável Icon
           }
-        
-          // Retorne o ícone do Ionicons correspondente
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Icon color={color} />;
+          // Ajuste o tamanho do ícone conforme necessário diretamente no componente SVG
+        },
+        tabBarInactiveTintColor: 'white',
+        tabBarActiveTintColor: 'red',
+        tabBarShowLabel: true,
+        tabBarStyle: {
+          backgroundColor: '#111',
+          display: 'flex',
         },
       })}
-      tabBarOptions={{
-        style: style.tab, // Use o estilo definido para a barra de navegação
-        activeTintColor: 'red', // Cor do ícone e texto da guia ativa
-        inactiveTintColor: 'gray', // Cor do ícone e texto das guias inativas
-      }}
     >
       <Tab.Screen name="Inicio" component={Home} />
-      <Tab.Screen name="Sacola" component={Setting} />
+      <Tab.Screen name="Sacola" component={SecondScreen} />
     </Tab.Navigator>
   );
 };
-
-const style = StyleSheet.create({
-  tab: {
-    backgroundColor: 'black',
-  },
-});
