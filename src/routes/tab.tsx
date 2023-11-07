@@ -3,8 +3,8 @@ import { Settings, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Home } from '../pages/Home';
-import Casa from '../assets/home.svg'
-import Sacola from '../assets/sacola.svg';
+import Casa from '../assets/icons/casa.svg';
+import Sacola from '../assets/icons/sacola.svg';
 import { SecondScreen } from '../pages/Home/Setting/SecondScreen';
 
 const Tab = createBottomTabNavigator();

@@ -65,7 +65,7 @@ export const Home = (): JSX.Element => {
           <FlatList
             ListHeaderComponent={(
               <View>
-                <Text>Lista de Produtos:</Text>
+                <Text>Produtos:</Text>
               </View>
             )}
             data={products}
