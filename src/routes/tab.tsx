@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from '../pages/Home';
 import Casa from '../assets/icons/casa.svg';
 import Sacola from '../assets/icons/sacola.svg';
-import { SecondScreen } from '../pages/Home/Setting/SecondScreen';
+import { SecondScreen } from '../pages/Home/ScreenCarrinho/SecondScreen';
 
 const Tab = createBottomTabNavigator();
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+
 import { formatCurrency } from "../../Utils/formatCurrency";
 
 interface ListagemProps {
@@ -12,7 +13,7 @@ interface ListagemProps {
 }
 
 export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail }) =>
-    <TouchableOpacity>
+    <TouchableOpacity style={styles.backGround}>
         <View style={styles.container}>
             <View style={styles.viewImage}>
                 <Image style={styles.image} source={{ uri: thumbnail }} />
@@ -26,42 +27,47 @@ export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail }) =
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#000000",
-        padding: 16,
-        margin: 8,
-        borderRadius: 8,
-        shadowColor: "#000000",
+        backgroundColor: "#b42424",
+        padding: 19,
+        margin: 10,
+        borderRadius: 13,
+        shadowColor: "white",
         shadowOffset: {
-            width: 5,
-            height: 5,
+            width: 200,
+            height: 200,
         },
-        shadowOpacityColor: 0.25,
-        shadowRadius: 3.84,
+        shadowOpacityColor: 10,
+        shadowRadius: 10,
         elevation: 5,
         flexDirection: "row",
     },
     title: {
         color: "white",
-        fontSize: 20,
+        fontSize: 17,
         fontWeight: "bold",
-        marginBottom: 8,
-        maxHeight: 100
+        marginBottom: 20,
+        maxHeight: 100,
+        fontFamily: 'Montserrat'
     },
     text: {
         color: "white",
-        fontSize: 16,
-        marginBottom: 4,
+        fontSize: 20,
+        marginBottom: 5,
     },
     infoContainer: {
         flex: 1,
-        marginLeft: 8,
+        marginLeft: 17,
     },
     image: {
         width: "100%",
         height: "100%",
+        borderRadius: 7,
     },
     viewImage: {
-        width: 130,
-        height: 130
-    }
+        width: 140,
+        height: 140
+    },
+    backGround: {
+        backgroundColor: '#000000',
+    },
 });

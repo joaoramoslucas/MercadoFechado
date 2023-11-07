@@ -4,7 +4,7 @@ import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-nativ
 interface CustomSearchBarProps {
     onSearch: (searchText: string) => void;
 }
-const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ onSearch }) => {
+export const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ onSearch }) => {
     const [searchText, setSearchText] = useState('');
 
     const handleSearch = () => {
@@ -13,13 +13,13 @@ const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ onSearch }) => {
     return (
         <View style={styles.container}>
             <TextInput
-                placeholder="Pesquisar no Mercado Preso"
+                style={styles.input}
+                placeholder="Pesquisar produto"
                 value={searchText}
                 onChangeText={(text) => setSearchText(text)}
-                style={styles.input}
             />
             <TouchableOpacity onPress={handleSearch} style={styles.searchButton}>
-                <Text style={styles.buttonText}>Pesquisar</Text>
+                <Text style={styles.buttonText}>Ir</Text>
             </TouchableOpacity>
         </View>
     );
@@ -32,24 +32,27 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         height: 30,
         borderWidth: 1,
-        borderColor: 'black',
-        paddingHorizontal: 10,
-        marginTop: 10,
-        marginHorizontal: 15
+        borderColor: '#b42424',
+        paddingHorizontal: 15,
+        marginTop: 15,
+        marginHorizontal: 40,
     },
     input: {
         flex: 1,
-        fontSize: 16,
-        height: 50
+        fontSize: 13,
+        height: 50,
+        color: '#d1d0d0',
     },
     searchButton: {
-        backgroundColor: 'black',
-        borderRadius: 10,
+        fontSize: 11,
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderRadius:10,
+        borderColor: '#b42424',
         paddingHorizontal: 15,
         marginLeft: 10,
     },
     buttonText: {
-        color: 'white',
+        color: '#000000',
     },
 });
-export default CustomSearchBar;
