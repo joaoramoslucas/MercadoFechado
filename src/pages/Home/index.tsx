@@ -50,19 +50,19 @@ export const Home = (): JSX.Element => {
 
   return (
     <View style={{ flex: 1 }}>
-      <CustomSearchBar
-        placeholder="Pesquisar..."
-        onChangeText={handleSearch}
-        value={searchText}
-      />
       {isLoad ? (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <ActivityIndicator size="large" />
         </View>
       ) : (
         <FlatList
-          ListHeaderComponent={(
-            <View>
+        ListHeaderComponent={(
+          <View>
+              <CustomSearchBar
+                placeholder="Pesquisar..."
+                onChangeText={handleSearch}
+                value={searchText}
+              />
               <Text>Produtos:</Text>
             </View>
           )}

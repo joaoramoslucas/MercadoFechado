@@ -13,8 +13,8 @@ export const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ onSearch }) =>
     return (
         <View style={styles.container}>
             <TextInput
-                style={styles.input}
                 placeholder="Pesquisar produto"
+                style={styles.input}
                 value={searchText}
                 onChangeText={(text) => setSearchText(text)}
             />

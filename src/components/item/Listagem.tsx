@@ -13,7 +13,7 @@ interface ListagemProps {
 }
 
 export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail }) =>
-    <TouchableOpacity style={styles.backGround}>
+    <TouchableOpacity style={styles.backGround} activeOpacity={1}>
         <View style={styles.container}>
             <View style={styles.viewImage}>
                 <Image style={styles.image} source={{ uri: thumbnail }} />
