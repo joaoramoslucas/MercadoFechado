@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import { formatCurrency } from "../../Utils/formatCurrency";
+import { useNavigation } from "@react-navigation/native";
 
 interface ListagemProps {
     id: string
@@ -12,19 +13,31 @@ interface ListagemProps {
     condition: string
 }
 
-export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail }) =>
-    <TouchableOpacity style={styles.backGround} activeOpacity={1}>
-        <View style={styles.container}>
-            <View style={styles.viewImage}>
-                <Image style={styles.image} source={{ uri: thumbnail }} />
-            </View>
-            <View style={styles.infoContainer}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.text}>{formatCurrency(price, 'BRL')}</Text>
-            </View>
-        </View>
-    </TouchableOpacity>
 
+export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail }) => {
+    
+    const navigation = useNavigation()
+
+    function retorno () {
+        navigation.navigate("Produto")
+    }
+
+    return (
+        <TouchableOpacity style={styles.backGround} activeOpacity={1} onPress={ () => {
+            retorno()
+        }}>
+            <View style={styles.container}>
+                <View style={styles.viewImage}>
+                    <Image style={styles.image} source={{ uri: thumbnail }} />
+                </View>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.text}>{formatCurrency(price, 'BRL')}</Text>
+                </View>
+            </View>
+        </TouchableOpacity>
+    )
+}
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#b42424",

@@ -2,10 +2,10 @@ import React from 'react';
 import { Settings, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Home } from '../pages/Home';
 import Casa from '../assets/icons/casa.svg';
 import Sacola from '../assets/icons/sacola.svg';
-import { SecondScreen } from '../pages/Home/ScreenCarrinho/SecondScreen';
+import { StackHome } from './StackHome';
+import { StackSacola } from './StackSacola';
 
 const Tab = createBottomTabNavigator();
 
@@ -34,8 +34,8 @@ export const TabScreens: React.FC<TabScreensProps> = () => {
         },
       })}
     >
-      <Tab.Screen name="Inicio" component={Home} />
-      <Tab.Screen name="Sacola" component={SecondScreen} />
+      <Tab.Screen name="Inicio" component={StackHome} />
+      <Tab.Screen name="Sacola" component={StackSacola} />
     </Tab.Navigator>
   );
 };

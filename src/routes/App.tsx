@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { StackScreen } from "./Stack";
+import { TabScreens } from "./tab";
 
 type Product = {
   id: string
@@ -11,5 +11,5 @@ type Product = {
 
 export const App = (): JSX.Element =>
   <NavigationContainer>
-    <StackScreen />
+    <TabScreens/>
   </NavigationContainer>
