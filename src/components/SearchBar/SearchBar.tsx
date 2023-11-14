@@ -23,7 +23,7 @@ export const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ onSearch }) =>
             </TouchableOpacity>
         </View>
     );
-};
+}; 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
