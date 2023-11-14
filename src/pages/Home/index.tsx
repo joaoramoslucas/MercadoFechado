@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
+
 import { api } from "../../service/api";
 import { Listagem } from "../../components/item/Listagem";
 import { CustomSearchBar } from "../../components/SearchBar/SearchBar";
@@ -57,14 +58,11 @@ export const Home = (): JSX.Element => {
       ) : (
         <FlatList
         ListHeaderComponent={(
-          <View>
               <CustomSearchBar
                 placeholder="Pesquisar..."
                 onChangeText={handleSearch}
                 value={searchText}
               />
-              <Text>Produtos:</Text>
-            </View>
           )}
           data={products}
           keyExtractor={(item) => item.id}
