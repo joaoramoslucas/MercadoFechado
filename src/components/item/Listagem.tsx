@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import { formatCurrency } from "../../Utils/formatCurrency";
 import { useNavigation } from "@react-navigation/native";
+import { DetalheDosProdutos } from "../../pages/Home/Produto/DetalheDosProdutos";
 
 interface ListagemProps {
     id: string
@@ -14,16 +15,21 @@ interface ListagemProps {
 }
 
 
-export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail }) => {
-    
+export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail, sold_quantity, condition, id }) => {
+
     const navigation = useNavigation()
 
-    function retorno () {
-        navigation.navigate("Produto")
+    function retorno() {
+        navigation.navigate("Produto", {id: id,
+            title: title,
+            price: price,
+            sold_quantity: sold_quantity,
+            thumbnail: thumbnail,
+            condition: condition})
     }
 
     return (
-        <TouchableOpacity style={styles.backGround} activeOpacity={1} onPress={ () => {
+        <TouchableOpacity style={styles.backGround} activeOpacity={1} onPress={() => {
             retorno()
         }}>
             <View style={styles.container}>
@@ -40,11 +46,13 @@ export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail }) =
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#b42424",
-        padding: 19,
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "white",
+        padding: 10,
         margin: 10,
-        borderRadius: 13,
-        shadowColor: "white",
+        borderRadius: 10,
+        shadowColor: "black",
         shadowOffset: {
             width: 200,
             height: 200,
@@ -55,17 +63,18 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     title: {
-        color: "white",
+        color: "black",
         fontSize: 17,
-        fontWeight: "bold",
+        fontWeight: "600",
         marginBottom: 20,
         maxHeight: 100,
         fontFamily: 'Montserrat'
     },
     text: {
-        color: "white",
+        color: "green",
         fontSize: 20,
         marginBottom: 5,
+        fontWeight: "bold"
     },
     infoContainer: {
         flex: 1,
@@ -81,6 +90,6 @@ const styles = StyleSheet.create({
         height: 140
     },
     backGround: {
-        backgroundColor: '#000000',
+        backgroundColor: 'rgba(237, 237, 237, 0.60)',
     },
 });

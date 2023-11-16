@@ -1,48 +1,83 @@
-// DetalheDosProdutos.tsx
-
+// DetalheDosProdutos
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-type Product = {
-  thumbnail: string
-  nome: string
-  preco: number
-  buy: string
+interface Product {
+  id: string
+  title: string
+  price: number
   sold_quantity: number
+  thumbnail: string
+  condition: string
   listar_tipo_id: string
-};
+}
 
 export const DetalheDosProdutos: React.FC = () => {
   const route = useRoute();
-  const { thumbnail, nome, preco, buy, sold_quantity, listar_tipo_id } = route.params;
+  const { params } = route
+
+  const { thumbnail, name, price, buy, sold_quantity, listar_tipo_id } = route.params;
 
   return (
-    <View>
-      {/* Renderize os detalhes do produto aqui usando as propriedades extraídas */}
-      <Image source={{ uri: thumbnail }} />
-      <Text style={styles.titulo}>{nome}</Text>
-      <Text style={styles.preco}>{buy}</Text>
-      <Text style={styles.text}>{sold_quantity}</Text>
-      <Text style={styles.text}>{preco}</Text>
-      <Text style={styles.text}>{listar_tipo_id}</Text>
+
+    <View style={styles.container}>
+      <View style={styles.containerProduct}>
+        <Image style={styles.image} source={{ uri: thumbnail }} />
+      </View>
+      <View style={styles.containerButtom}>
+        <TouchableOpacity>
+          <Text style={styles.title}>Comprar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  titulo: {
-    color: "white",
+  container: {
+    paddingTop: 40,
+    height: '100%',
+    width: '100%',
+  },
+  containerButtom: {
+    width: 200,
+    height: 40,
+    backgroundColor: 'green'
+  },
+  containerProduct: {
+    backgroundColor: "white",
+    padding: 19,
+    margin: 17,
+    height: 500,
+    borderRadius: 13,
+    shadowColor: "black",
+    shadowOffset: {
+      width: 200,
+      height: 200,
+    },
+    shadowOpacityColor: 10,
+    shadowRadius: 10,
+    elevation: 5,
+    flexDirection: "row",
+  },
+  title: {
+    color: "black",
     fontSize: 17,
     fontWeight: "bold",
     marginBottom: 20,
     maxHeight: 100,
-
+    fontFamily: 'Montserrat'
   },
   text: {
-    color: "white",
+    color: "black",
     fontSize: 20,
     marginBottom: 5,
+  },
+  infoContainer: {
+    flex: 1,
+    marginLeft: 17,
   },
   image: {
     width: "100%",
@@ -50,14 +85,11 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   viewImage: {
-    width: 140,
-    height: 140
+    width: 100,
+    height: 140,
+    marginBottom: 10,
   },
   backGround: {
     backgroundColor: '#000000',
-},
-  preco: {
-    backgroundColor: 'black',
-    color: "green"
-},
+  },
 });
