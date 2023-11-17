@@ -4,31 +4,25 @@ import { useRoute } from '@react-navigation/native';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-interface Product {
-  id: string
-  title: string
-  price: number
-  sold_quantity: number
-  thumbnail: string
-  condition: string
-  listar_tipo_id: string
-}
+import { style } from '../../../components/Botoes/button';
+import { style2 } from '../../../components/Botoes/';
+
 
 export const DetalheDosProdutos: React.FC = () => {
   const route = useRoute();
-  const { params } = route
-
   const { thumbnail, name, price, buy, sold_quantity, listar_tipo_id } = route.params;
 
   return (
-
     <View style={styles.container}>
       <View style={styles.containerProduct}>
         <Image style={styles.image} source={{ uri: thumbnail }} />
       </View>
-      <View style={styles.containerButtom}>
+      <View style={styles.infoContainer}>
+        <Text></Text>
+      </View>
+      <View style={style2.style2}>
         <TouchableOpacity>
-          <Text style={styles.title}>Comprar</Text>
+          <Text style={style.button}>Finalizar Compra</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -37,20 +31,16 @@ export const DetalheDosProdutos: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40,
+    paddingTop: 20,
     height: '100%',
     width: '100%',
-  },
-  containerButtom: {
-    width: 200,
-    height: 40,
-    backgroundColor: 'green'
   },
   containerProduct: {
     backgroundColor: "white",
     padding: 19,
-    margin: 17,
-    height: 500,
+    margin: 10,
+    width: 400,
+    height: 400,
     borderRadius: 13,
     shadowColor: "black",
     shadowOffset: {
@@ -61,19 +51,6 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 5,
     flexDirection: "row",
-  },
-  title: {
-    color: "black",
-    fontSize: 17,
-    fontWeight: "bold",
-    marginBottom: 20,
-    maxHeight: 100,
-    fontFamily: 'Montserrat'
-  },
-  text: {
-    color: "black",
-    fontSize: 20,
-    marginBottom: 5,
   },
   infoContainer: {
     flex: 1,
