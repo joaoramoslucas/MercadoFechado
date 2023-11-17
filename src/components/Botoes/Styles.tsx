@@ -10,16 +10,16 @@ export const styleContainer = StyleSheet.create({
     marginLeft: 10,
   },
   container: {
-    paddingTop: 20,
+    paddingTop: 30,
     height: '100%',
     width: '100%',
   },
   containerProduct: {
     backgroundColor: "white",
-    padding: 19,
-    margin: 10,
-    width: 400,
-    height: 400,
+    padding: 5,
+    alignSelf: 'center',
+    width: 350,
+    height: 350,
     borderRadius: 13,
     shadowColor: "black",
     shadowOffset: {
@@ -33,38 +33,38 @@ export const styleContainer = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    marginLeft: 17,
+    marginLeft: 20,
   },
   image: {
+    marginRight: 60,
     width: "100%",
     height: "100%",
   },
   viewImage: {
-    width: 100,
+    width: 140,
     height: 140,
   },
   quantidade: {
     color: "black",
-    fontSize: 17,
-    fontWeight: "600",
-    marginBottom: 20,
-    maxHeight: 100,
+    fontWeight: "bold",
+    fontSize: 13,
+    marginTop: 40,
     fontFamily: 'Montserrat'
   },
   descricao: {
+    marginTop: 15,
     color: "black",
     fontSize: 20,
-    fontWeight: "600",
-    marginBottom: 20,
+    fontWeight: "bold",
     maxHeight: 100,
     fontFamily: 'Montserrat'
   },
   preco: {
     color: "black",
     fontSize: 40,
-    fontWeight: "600",
-    marginBottom: 20,
-    maxHeight: 100,
+    marginTop: 40,
+    textAlign: 'center',
+    fontWeight: 'bold',
     fontFamily: 'Montserrat'
   }
 }) 

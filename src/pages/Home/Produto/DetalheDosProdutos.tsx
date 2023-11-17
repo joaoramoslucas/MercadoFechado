@@ -5,8 +5,8 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { formatCurrency } from '../../../Utils/formatCurrency';
-import { styleButton } from '../../../components/Botoes/button';
-import { styleContainer } from '../../../components/Botoes/styles';
+import { styleButton } from '../../../components/Botoes/Button';
+import { styleContainer } from '../../../components/Botoes/Styles';
 
 
 export const DetalheDosProdutos: React.FC = () => {
@@ -20,12 +20,16 @@ export const DetalheDosProdutos: React.FC = () => {
       </View>
       <View style={styleContainer.infoContainer}>
         <Text style={styleContainer.descricao}>{title}</Text>
+      </View>
+      <View style={styleContainer.infoContainer}>
         <Text style={styleContainer.quantidade}>Em estoque: {sold_quantity}</Text>
-        <Text style={styleContainer.preco}>{formatCurrency(price, 'BRL')}</Text>
+      </View>
+      <View style={styleContainer.infoContainer}>
+        <Text style={styleContainer.preco}>Apenas: {formatCurrency(price, 'BRL')}</Text>
       </View>
       <View style={styleContainer.containerButton}>
         <TouchableOpacity>
-          <Text style={styleButton.button}>Finalizar Compra</Text>
+          <Text style={styleButton.button}>Adicionar ao Carrinho</Text>
         </TouchableOpacity>
       </View>
     </View>
