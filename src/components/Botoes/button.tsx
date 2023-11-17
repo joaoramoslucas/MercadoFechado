@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const style = StyleSheet.create({
+export const styleButton = StyleSheet.create({
       button: {
         color: 'white',
         textAlign: 'center',

@@ -4,69 +4,30 @@ import { useRoute } from '@react-navigation/native';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { style } from '../../../components/Botoes/button';
-import { style2 } from '../../../components/Botoes/';
+import { formatCurrency } from '../../../Utils/formatCurrency';
+import { styleButton } from '../../../components/Botoes/button';
+import { styleContainer } from '../../../components/Botoes/styles';
 
 
 export const DetalheDosProdutos: React.FC = () => {
   const route = useRoute();
-  const { thumbnail, name, price, buy, sold_quantity, listar_tipo_id } = route.params;
+  const { thumbnail, title, price, sold_quantity } = route.params;
 
   return (
-    <View style={styles.container}>
-      <View style={styles.containerProduct}>
-        <Image style={styles.image} source={{ uri: thumbnail }} />
+    <View style={styleContainer.container}>
+      <View style={styleContainer.containerProduct}>
+        <Image style={styleContainer.image} source={{ uri: thumbnail }} />
       </View>
-      <View style={styles.infoContainer}>
-        <Text></Text>
+      <View style={styleContainer.infoContainer}>
+        <Text style={styleContainer.descricao}>{title}</Text>
+        <Text style={styleContainer.quantidade}>Em estoque: {sold_quantity}</Text>
+        <Text style={styleContainer.preco}>{formatCurrency(price, 'BRL')}</Text>
       </View>
-      <View style={style2.style2}>
+      <View style={styleContainer.containerButton}>
         <TouchableOpacity>
-          <Text style={style.button}>Finalizar Compra</Text>
+          <Text style={styleButton.button}>Finalizar Compra</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 20,
-    height: '100%',
-    width: '100%',
-  },
-  containerProduct: {
-    backgroundColor: "white",
-    padding: 19,
-    margin: 10,
-    width: 400,
-    height: 400,
-    borderRadius: 13,
-    shadowColor: "black",
-    shadowOffset: {
-      width: 200,
-      height: 200,
-    },
-    shadowOpacityColor: 10,
-    shadowRadius: 10,
-    elevation: 5,
-    flexDirection: "row",
-  },
-  infoContainer: {
-    flex: 1,
-    marginLeft: 17,
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 7,
-  },
-  viewImage: {
-    width: 100,
-    height: 140,
-    marginBottom: 10,
-  },
-  backGround: {
-    backgroundColor: '#000000',
-  },
-});
