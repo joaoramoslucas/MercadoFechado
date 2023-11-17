@@ -66,5 +66,13 @@ export const styleContainer = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontFamily: 'Montserrat'
-  }
+  },
+  setaImage: {
+    width: 100, // Ajuste conforme necessário
+    height: 100, // Ajuste conforme necessário
+    marginRight: 8, // Ajuste conforme necessário
+  },
+  headerLeft: {
+    marginLeft: 16, // Ajuste conforme necessário
+  },
 }) 
