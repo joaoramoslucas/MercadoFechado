@@ -57,12 +57,12 @@ export const Home = (): JSX.Element => {
         </View>
       ) : (
         <FlatList
-        ListHeaderComponent={(
-              <CustomSearchBar
-                placeholder="Pesquisar..."
-                onChangeText={handleSearch}
-                value={searchText}
-              />
+          ListHeaderComponent={(
+            <CustomSearchBar
+              placeholder="Pesquisar..."
+              onChangeText={handleSearch}
+              value={searchText}
+            />
           )}
           data={products}
           keyExtractor={(item) => item.id}

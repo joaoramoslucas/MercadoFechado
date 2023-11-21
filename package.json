@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "rnpm": {
-    "assets": ["../Utils/fonts"]
+    "assets": [
+      "../Utils/fonts"
+    ]
   },
   "scripts": {
     "android": "react-native run-android",
@@ -13,7 +15,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.19.3",
+    "@react-native-async-storage/async-storage": "^1.19.6",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/stack": "^6.3.20",

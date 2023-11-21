@@ -2,12 +2,16 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+
+import { Bag } from '../../Sacola/SecondScreen';
+import Voltar from '../../../assets/icons/voltar.svg';
 import { formatCurrency } from '../../../Utils/formatCurrency';
 import { styleButton } from '../../../components/Botoes/Button';
 import { styleContainer } from '../../../components/Botoes/Styles';
-import Voltar from '../../../assets/icons/voltar.svg';
-import { Bag } from '../../Sacola/SecondScreen';
+
 
 export const DetalheDosProdutos: React.FC = () => {
   const route = useRoute();
@@ -17,9 +21,15 @@ export const DetalheDosProdutos: React.FC = () => {
   const handleBackPress = () => {
     navigation.goBack();
   };
-  const handleBagPress = () => {
-    navigation.navigate(Bag)
-  }
+  const handleBagPress = async () => {
+    try {
+      let obj = [{ title: title, thumbnail: thumbnail, price: price }]
+      await AsyncStorage.setItem('my-key', JSON.stringify(obj));
+      console.log('teste')
+    } catch (e) {
+      // saving error
+    }
+  };
 
   return (
     <View style={styleContainer.container}>
