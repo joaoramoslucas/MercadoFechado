@@ -7,6 +7,7 @@ import { formatCurrency } from '../../../Utils/formatCurrency';
 import { styleButton } from '../../../components/Botoes/Button';
 import { styleContainer } from '../../../components/Botoes/Styles';
 import Voltar from '../../../assets/icons/voltar.svg';
+import { Bag } from '../../Sacola/SecondScreen';
 
 export const DetalheDosProdutos: React.FC = () => {
   const route = useRoute();
@@ -16,6 +17,9 @@ export const DetalheDosProdutos: React.FC = () => {
   const handleBackPress = () => {
     navigation.goBack();
   };
+  const handleBagPress = () => {
+    navigation.navigate(Bag)
+  }
 
   return (
     <View style={styleContainer.container}>
@@ -35,7 +39,7 @@ export const DetalheDosProdutos: React.FC = () => {
         <Text style={styleContainer.preco}>Total: {formatCurrency(price, 'BRL')}</Text>
       </View>
       <View style={styleContainer.containerButton}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleBagPress}>
           <Text style={styleButton.button}>Adicionar à Sacola</Text>
         </TouchableOpacity>
       </View>
