@@ -6,27 +6,24 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { formatCurrency } from '../../../Utils/formatCurrency';
 import { styleButton } from '../../../components/Botoes/Button';
 import { styleContainer } from '../../../components/Botoes/Styles';
-import voltar from '../../../assets/icons/voltar.svg';
+import Voltar from '../../../assets/icons/voltar.svg';
 
 export const DetalheDosProdutos: React.FC = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const { thumbnail, title, price, sold_quantity } = route.params;
 
-  const handleVoltarPress = () => {
+  const handleBackPress = () => {
     navigation.goBack();
   };
 
   return (
     <View style={styleContainer.container}>
+      <TouchableOpacity onPress={handleBackPress} style={styleContainer.headerLeft}>
+        <Voltar />
+      </TouchableOpacity>
       <View style={styleContainer.containerProduct}>
         <Image style={styleContainer.image} source={{ uri: thumbnail }} />
-        <View style={styleContainer.containerProduct}>
-          <TouchableOpacity onPress={handleVoltarPress} style={styleContainer.headerLeft}>
-            <Image style={styleContainer.setaImage} source={{ uri: thumbnail || '' }} />
-
-          </TouchableOpacity>
-        </View>
       </View>
       <View style={styleContainer.infoContainer}>
         <Text style={styleContainer.descricao}>{title}</Text>
@@ -39,7 +36,7 @@ export const DetalheDosProdutos: React.FC = () => {
       </View>
       <View style={styleContainer.containerButton}>
         <TouchableOpacity>
-          <Text style={styleButton.button}>Adicionar ao Carrinho</Text>
+          <Text style={styleButton.button}>Adicionar à Sacola</Text>
         </TouchableOpacity>
       </View>
     </View>
