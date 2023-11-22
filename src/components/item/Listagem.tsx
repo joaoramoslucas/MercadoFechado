@@ -30,7 +30,7 @@ export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail, sol
         }}>
             <View style={styles.container}>
                 <View style={styles.viewImage}>
-                    <Image style={styles.image} source={{ uri: thumbnail }} />
+                    <Image style={styles.image} source={{ uri: thumbnail.replace(/\w.jpg/gi, 'W.jpg') }} />
                 </View>
                 <View style={styles.infoContainer}>
                     <Text style={styles.title}>{title}</Text>

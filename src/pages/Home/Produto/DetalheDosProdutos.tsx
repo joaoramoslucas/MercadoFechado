@@ -37,7 +37,7 @@ export const DetalheDosProdutos: React.FC = () => {
         <Voltar />
       </TouchableOpacity>
       <View style={styleContainer.containerProduct}>
-        <Image style={styleContainer.image} source={{ uri: thumbnail }} />
+        <Image style={styleContainer.image} source={{ uri: thumbnail.replace(/\w.jpg/gi, 'W.jpg') }} />
       </View>
       <View style={styleContainer.infoContainer}>
         <Text style={styleContainer.descricao}>{title}</Text>
@@ -49,9 +49,13 @@ export const DetalheDosProdutos: React.FC = () => {
         <Text style={styleContainer.preco}>Total: {formatCurrency(price, 'BRL')}</Text>
       </View>
       <View style={styleContainer.containerButton}>
+
+
         <TouchableOpacity onPress={handleBagPress}>
           <Text style={styleButton.button}>Adicionar à Sacola</Text>
         </TouchableOpacity>
+
+        
       </View>
     </View>
   );
