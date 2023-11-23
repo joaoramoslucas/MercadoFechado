@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { Bag } from "../pages/Sacola/SecondScreen";
+import { Bag } from "../../pages/Sacola";
 
 const Stack = createStackNavigator();
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { StackHome } from './StackHome';
-import Casa from '../assets/icons/casa.svg';
-import { StackSacola } from './StackSacola';
-import Sacola from '../assets/icons/sacola.svg';
+import Casa from '../../assets/icons/casa.svg'
+import { StackHome } from '../stack/StackHome';
+import Sacola from '../../assets/icons/sacola.svg';
+import { StackSacola } from '../stack/StackSacola';
+
 
 const Tab = createBottomTabNavigator();
 

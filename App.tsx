@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { TabScreens } from "./tab";
+import { TabScreens } from "./src/routes/tab";
 
 export const App = (): JSX.Element =>
   <NavigationContainer>

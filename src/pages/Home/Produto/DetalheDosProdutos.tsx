@@ -8,8 +8,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Bag } from '../../Sacola/SecondScreen';
 import Voltar from '../../../assets/icons/voltar.svg';
+import { styleButton } from '../../../components/Botoes';
 import { formatCurrency } from '../../../Utils/formatCurrency';
-import { styleButton } from '../../../components/Botoes/Button';
 import { styleContainer } from '../../../components/Botoes/Styles';
 
 
