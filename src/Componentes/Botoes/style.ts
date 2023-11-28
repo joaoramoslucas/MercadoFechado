@@ -1,14 +1,6 @@
-import { StyleSheet, } from "react-native";
+import { StyleSheet } from "react-native";
 
-export const styleContainer = StyleSheet.create({
-  containerButton: {
-    width: '95%',
-    height: 50,
-    borderRadius: 5,
-    backgroundColor: 'green',
-    marginBottom: 5,
-    marginLeft: 10,
-  },
+export const s = StyleSheet.create({
   container: {
     paddingTop: 30,
     height: '100%',
@@ -45,41 +37,54 @@ export const styleContainer = StyleSheet.create({
     height: 140,
   },
   quantidade: {
-    marginLeft: 10,
-    height: 20,
+    marginLeft: 120,
     color: "black",
     fontWeight: "bold",
-    fontSize: 15,
-    fontFamily: 'Montserrat'
+    fontSize: 19,
+    fontFamily: 'Montserrat',
+    position: 'absolute', 
+    bottom: 1,
   },
   descricao: {
     marginTop: 20,
     color: "black",
     fontSize: 25,
     fontWeight: "bold",
-    maxHeight: 100,
-    fontFamily: 'Montserrat'
+    maxHeight: 170,
+    fontFamily: 'Montserrat',
+    position: 'absolute',
+    bottom: 180,
+    marginEnd: 10,
   },
   preco: {
+    marginVertical: -100,
     color: "black",
     fontSize: 35,
-    marginTop: 15,
-    marginVertical: 15,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontFamily: 'Montserrat'
+    fontFamily: 'Montserrat',
+    position: 'absolute',
+    bottom: 150,
+    marginLeft: 45,
   },
   headerLeft: {
     marginTop: -10,
-    marginLeft: 20, 
+    marginLeft: 20,
   },
   texto: {
+    width: '95%',
+    height: 40,
+    borderRadius: 5,
+    backgroundColor: 'green',
+    marginBottom: 5,
+    marginLeft: 10,
     textAlign: "center",
-    marginTop: 5,
+    marginTop: 15,
     color: "black",
     fontSize: 25,
     fontWeight: "bold",
-    maxHeight: 100,
-    fontFamily: 'Montserrat'
+    fontFamily: 'Montserrat',
+    position: 'absolute', 
+    bottom: 25, 
   },
-}) 
+});

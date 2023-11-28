@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from '../../../Componentes/Botoes';
 import Voltar from '../../../Assets/Icons/voltar.svg';
 import { formatCurrency } from '../../../Utils/formatCurrency';
-import { styleContainer } from '../../../Componentes/Botoes/style';
+import { s } from '../../../Componentes/Botoes/style';
 
 
 export const DetalheDosProdutos: React.FC = () => {
@@ -27,21 +27,19 @@ export const DetalheDosProdutos: React.FC = () => {
 }};
 
   return (
-    <View style={styleContainer.container}>
-      <TouchableOpacity onPress={handleBackPress} style={styleContainer.headerLeft}>
+    <View style={s.container}>
+      <TouchableOpacity onPress={handleBackPress} style={s.headerLeft}>
         <Voltar />
+        <Text style={s.quantidade}>Em estoque: {sold_quantity}</Text>
       </TouchableOpacity>
-      <View style={styleContainer.containerProduct}>
-        <Image style={styleContainer.image} source={{ uri: thumbnail.replace(/\w.jpg/gi, 'W.jpg') }} />
+      <View style={s.containerProduct}>
+        <Image style={s.image} source={{ uri: thumbnail.replace(/\w.jpg/gi, 'W.jpg') }} />
       </View>
-      <View style={styleContainer.infoContainer}>
-        <Text style={styleContainer.descricao}>{title}</Text>
+      <View style={s.infoContainer}>
+        <Text style={s.descricao}>{title}</Text>
       </View>
-      <View style={styleContainer.quantidade}>
-        <Text style={styleContainer.quantidade}>Em estoque: {sold_quantity}</Text>
-      </View>
-      <View style={styleContainer.preco}>
-        <Text style={styleContainer.preco}>Total: {formatCurrency(price, 'BRL')}</Text>
+      <View style={s.preco}>
+        <Text style={s.preco}>Total: {formatCurrency(price, 'BRL')}</Text>
       </View>
       <Button />
     </View>

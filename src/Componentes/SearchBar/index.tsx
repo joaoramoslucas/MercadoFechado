@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 
-import { styles } from '../SearchBar/styles'
+import { s } from '../SearchBar/styles'
 
 interface CustomSearchBarProps {
     onSearch: (searchText: string) => void;
@@ -13,15 +13,15 @@ export const CustomSearchBar: React.FC<CustomSearchBarProps> = ({ onSearch }) =>
         onSearch(searchText);
     };
     return (
-        <View style={styles.container}>
+        <View style={s.container}>
             <TextInput
                 placeholder="Pesquisar produto"
-                style={styles.input}
+                style={s.input}
                 value={searchText}
                 onChangeText={(text) => setSearchText(text)}
             />
-            <TouchableOpacity onPress={handleSearch} style={styles.searchButton}>
-                <Text style={styles.buttonText}>Ir</Text>
+            <TouchableOpacity onPress={handleSearch} style={s.searchButton}>
+                <Text style={s.buttonText}>Ir</Text>
             </TouchableOpacity>
         </View>
     );

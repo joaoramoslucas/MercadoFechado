@@ -1,6 +1,6 @@
 import { TouchableOpacity, Text, View } from 'react-native';
 
-import { styleContainer } from './style';
+import { s } from './style';
 
 type ButtonProps = {
    onClick(): void
@@ -9,8 +9,8 @@ type ButtonProps = {
 export const Button = ({ onClick }: ButtonProps) => {
   return (
     <View>
-        <TouchableOpacity style={styleContainer.containerButton} onPress={onClick}>
-          <Text style={styleContainer.texto}>Adicionar à Sacola</Text>
+        <TouchableOpacity style={s.containerButton} onPress={onClick}>
+          <Text style={s.texto}>Adicionar à Sacola</Text>
         </TouchableOpacity>
      </View>
    )}

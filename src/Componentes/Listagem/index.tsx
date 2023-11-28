@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
-import { styles } from '../Listagem/styles'
+import { s } from '../Listagem/styles'
 import { useNavigation } from "@react-navigation/native";
 import { formatCurrency } from "../../Utils/formatCurrency";
 
@@ -25,16 +25,16 @@ export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail, sol
             condition: condition})
     }
     return (
-        <TouchableOpacity style={styles.backGround} activeOpacity={1} onPress={() => {
+        <TouchableOpacity style={s.backGround} activeOpacity={1} onPress={() => {
             retorno()
         }}>
-            <View style={styles.container}>
-                <View style={styles.viewImage}>
-                    <Image style={styles.image} source={{ uri: thumbnail.replace(/\w.jpg/gi, 'W.jpg') }} />
+            <View style={s.container}>
+                <View style={s.viewImage}>
+                    <Image style={s.image} source={{ uri: thumbnail.replace(/\w.jpg/gi, 'W.jpg') }} />
                 </View>
-                <View style={styles.infoContainer}>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.text}>{formatCurrency(price, 'BRL')}</Text>
+                <View style={s.infoContainer}>
+                    <Text style={s.title}>{title}</Text>
+                    <Text style={s.text}>{formatCurrency(price, 'BRL')}</Text>
                 </View>
             </View>
         </TouchableOpacity>
