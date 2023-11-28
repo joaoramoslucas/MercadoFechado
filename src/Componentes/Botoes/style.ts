@@ -45,34 +45,41 @@ export const styleContainer = StyleSheet.create({
     height: 140,
   },
   quantidade: {
+    marginLeft: 10,
+    height: 20,
     color: "black",
     fontWeight: "bold",
-    fontSize: 13,
-    marginTop: 40,
+    fontSize: 15,
     fontFamily: 'Montserrat'
   },
   descricao: {
-    marginTop: 15,
+    marginTop: 20,
     color: "black",
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: "bold",
     maxHeight: 100,
     fontFamily: 'Montserrat'
   },
   preco: {
     color: "black",
-    fontSize: 40,
-    marginTop: 40,
+    fontSize: 35,
+    marginTop: 15,
+    marginVertical: 15,
     textAlign: 'center',
     fontWeight: 'bold',
     fontFamily: 'Montserrat'
   },
-  setaImage: {
-    width: 100, // Ajuste conforme necessário
-    height: 100, // Ajuste conforme necessário
-    marginRight: 8, // Ajuste conforme necessário
-  },
   headerLeft: {
-    marginLeft: 16, // Ajuste conforme necessário
+    marginTop: -10,
+    marginLeft: 20, 
+  },
+  texto: {
+    textAlign: "center",
+    marginTop: 5,
+    color: "black",
+    fontSize: 25,
+    fontWeight: "bold",
+    maxHeight: 100,
+    fontFamily: 'Montserrat'
   },
 }) 

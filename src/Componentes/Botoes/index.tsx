@@ -1,27 +1,16 @@
-import { styleContainer } from './Styles';
+import { TouchableOpacity, Text, View } from 'react-native';
 
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { styleContainer } from './style';
 
-export const styleButton = StyleSheet.create({
-  button: {
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    padding: 15,
-  },
-})
+type ButtonProps = {
+   onClick(): void
+   }
 
-// type ButtonProps = {
-//   onClick(): void
-// }
-//COLOCAR NOME DOS COMPONENTES MINUSCULO E DAS PASTAS MAIUSCULA, LEMBRAR DE COLOCAR O NOME DE INDEX PARA O COMPONENTE.
-
-
-// export const Button = ({ onClick }: ButtonProps) => {
-
-//   return (
-//     <TouchableOpacity onPress={onClick}>
-//       <Text style={styleContainer.container}>Adicionar à Sacola</Text>
-//     </TouchableOpacity>
-//   )
-// }
+export const Button = ({ onClick }: ButtonProps) => {
+  return (
+    <View>
+        <TouchableOpacity style={styleContainer.containerButton} onPress={onClick}>
+          <Text style={styleContainer.texto}>Adicionar à Sacola</Text>
+        </TouchableOpacity>
+     </View>
+   )}

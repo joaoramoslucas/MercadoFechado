@@ -4,8 +4,8 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import Voltar from '../../../assets/icons/voltar.svg';
-import { styleButton } from '../../../Componentes/Botoes';
+import { Button } from '../../../Componentes/Botoes';
+import Voltar from '../../../Assets/Icons/voltar.svg';
 import { formatCurrency } from '../../../Utils/formatCurrency';
 import { styleContainer } from '../../../Componentes/Botoes/style';
 
@@ -24,9 +24,7 @@ export const DetalheDosProdutos: React.FC = () => {
       await AsyncStorage.setItem('my-key', JSON.stringify(obj));
       console.log('teste')
     } catch (e) {
-      // saving error
-    }
-  };
+}};
 
   return (
     <View style={styleContainer.container}>
@@ -39,21 +37,13 @@ export const DetalheDosProdutos: React.FC = () => {
       <View style={styleContainer.infoContainer}>
         <Text style={styleContainer.descricao}>{title}</Text>
       </View>
-      <View style={styleContainer.infoContainer}>
+      <View style={styleContainer.quantidade}>
         <Text style={styleContainer.quantidade}>Em estoque: {sold_quantity}</Text>
       </View>
-      <View style={styleContainer.infoContainer}>
+      <View style={styleContainer.preco}>
         <Text style={styleContainer.preco}>Total: {formatCurrency(price, 'BRL')}</Text>
       </View>
-      <View style={styleContainer.containerButton}>
-
-
-        <TouchableOpacity onPress={handleBagPress}>
-          <Text style={styleButton.button}>Adicionar à Sacola</Text>
-        </TouchableOpacity>
-
-
-      </View>
+      <Button />
     </View>
   );
 };

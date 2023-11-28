@@ -2,9 +2,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { StackHome } from '../Stack/StackHome';
-import Casa from '../../assets/icons/casa.svg';
+import Casa from '../../Assets/Icons/casa.svg';
 import { StackSacola } from '../Stack/StackSacola';
-import Sacola from '../../assets/icons/sacola.svg';
+import Sacola from '../../Assets/Icons/sacola.svg';
 
 
 const Tab = createBottomTabNavigator();
