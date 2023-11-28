@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, FlatList, ActivityIndicator } from "react-native";
 
 import { api } from "../../service/api";
-import { Listagem } from "../../components/item/Listagem";
-import { CustomSearchBar } from "../../components/SearchBar/SearchBar";
+import { Listagem } from "../../Componentes/Listagem";
+import { CustomSearchBar } from "../../Componentes/SearchBar";
 
 type Product = {
   id: string;

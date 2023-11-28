@@ -4,13 +4,10 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-
-import { Bag } from '../../Sacola/SecondScreen';
 import Voltar from '../../../assets/icons/voltar.svg';
-import { styleButton } from '../../../components/Botoes';
+import { styleButton } from '../../../Componentes/Botoes';
 import { formatCurrency } from '../../../Utils/formatCurrency';
-import { styleContainer } from '../../../components/Botoes/Styles';
+import { styleContainer } from '../../../Componentes/Botoes/style';
 
 
 export const DetalheDosProdutos: React.FC = () => {
@@ -55,7 +52,7 @@ export const DetalheDosProdutos: React.FC = () => {
           <Text style={styleButton.button}>Adicionar à Sacola</Text>
         </TouchableOpacity>
 
-        
+
       </View>
     </View>
   );

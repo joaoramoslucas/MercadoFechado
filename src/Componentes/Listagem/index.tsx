@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
-import { styles } from '../item/Styles'
+import { styles } from '../Listagem/styles'
 import { useNavigation } from "@react-navigation/native";
 import { formatCurrency } from "../../Utils/formatCurrency";
 
