@@ -42,7 +42,7 @@ export const s = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 19,
     fontFamily: 'Montserrat',
-    position: 'absolute', 
+    position: 'absolute',
     bottom: 1,
   },
   descricao: {
@@ -58,13 +58,13 @@ export const s = StyleSheet.create({
   preco: {
     marginVertical: -100,
     color: "black",
-    fontSize: 35,
+    fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold',
     fontFamily: 'Montserrat',
     position: 'absolute',
     bottom: 135,
-    marginLeft: 45,
+    marginLeft: 70,
   },
   headerLeft: {
     marginTop: -10,
@@ -81,7 +81,7 @@ export const s = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     fontFamily: 'Montserrat',
-    position: 'absolute', 
-    bottom: 15, 
+    position: 'absolute',
+    bottom: 15,
   },
 });

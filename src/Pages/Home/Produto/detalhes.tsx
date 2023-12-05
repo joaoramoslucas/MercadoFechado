@@ -1,14 +1,13 @@
-// DetalheDosProdutos
+// DetalheDosProdutos.tsx
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Button } from '../../../Componentes/Botoes';
+import { s } from '../../../Componentes/Botoes/style';
 import Voltar from '../../../Assets/Icons/voltar.svg';
 import { formatCurrency } from '../../../Utils/formatCurrency';
-import { s } from '../../../Componentes/Botoes/style';
-
 
 export const DetalheDosProdutos: React.FC = () => {
   const route = useRoute();
@@ -18,13 +17,27 @@ export const DetalheDosProdutos: React.FC = () => {
   const handleBackPress = () => {
     navigation.goBack();
   };
+
   const handleBagPress = async () => {
     try {
-      let obj = [{ title: title, thumbnail: thumbnail, price: price }]
-      await AsyncStorage.setItem('my-key', JSON.stringify(obj));
-      console.log('teste')
-    } catch (e) {
-}};
+      const existingItems = await AsyncStorage.getItem('my-key');
+      let products = existingItems ? JSON.parse(existingItems) : [];
+      const newProduct = { id: String(Math.random()), nome: title, preco: price }; // Certifique-se de incluir 'id'
+
+      if (products.length >= 10) {
+        console.log('Limite de 10 produtos atingido. Não é possível adicionar mais produtos.');
+        return;
+      }
+
+      products = [...products, newProduct];
+      await AsyncStorage.setItem('my-key', JSON.stringify(products));
+      console.log('Produto adicionado à sacola:', newProduct);
+      
+      navigation.navigate("Home");
+    } catch (error) {
+      console.error('Erro ao adicionar o produto à sacola:', error);
+    }
+  };
 
   return (
     <View style={s.container}>
@@ -41,7 +54,7 @@ export const DetalheDosProdutos: React.FC = () => {
       <View style={s.preco}>
         <Text style={s.preco}>Total: {formatCurrency(price, 'BRL')}</Text>
       </View>
-      <Button />
+      <Button onPress={handleBagPress} />
     </View>
   );
 };

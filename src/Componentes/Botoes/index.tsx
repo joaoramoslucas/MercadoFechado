@@ -1,16 +1,17 @@
-import { TouchableOpacity, Text, View } from 'react-native';
-
+// Button.tsx
+import React from 'react';
+import { TouchableOpacity, Text, StyleProp, ViewStyle } from 'react-native';
 import { s } from './style';
 
 type ButtonProps = {
-   onClick(): void
-   }
+  onPress: () => void;
+  style?: StyleProp<ViewStyle>;
+};
 
-export const Button = ({ onClick }: ButtonProps) => {
+export const Button: React.FC<ButtonProps> = ({ onPress, style }) => {
   return (
-    <View>
-        <TouchableOpacity style={s.containerButton} onPress={onClick}>
-          <Text style={s.texto}>Adicionar à Sacola</Text>
-        </TouchableOpacity>
-     </View>
-   )}
+    <TouchableOpacity onPress={onPress} style={style}>
+      <Text style={s.texto}>Adicionar à Sacola</Text>
+    </TouchableOpacity>
+  );
+};

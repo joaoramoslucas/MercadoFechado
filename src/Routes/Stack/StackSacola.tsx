@@ -8,5 +8,6 @@ const Stack = createStackNavigator();
 export const StackSacola = () =>
     <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Sacola" component={Bag} />
+        <Stack.Screen name="Produto" component={Bag} />
     </Stack.Navigator>
 
