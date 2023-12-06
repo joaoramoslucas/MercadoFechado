@@ -1,4 +1,3 @@
-// DetalheDosProdutos.tsx
 import React from 'react';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
@@ -22,13 +21,12 @@ export const DetalheDosProdutos: React.FC = () => {
     try {
       const existingItems = await AsyncStorage.getItem('my-key');
       let products = existingItems ? JSON.parse(existingItems) : [];
-      const newProduct = { id: String(Math.random()), nome: title, preco: price }; // Certifique-se de incluir 'id'
+      const newProduct = { id: String(Math.random()), title: title, price: price, thumbnail: thumbnail }; 
 
       if (products.length >= 10) {
         console.log('Limite de 10 produtos atingido. Não é possível adicionar mais produtos.');
         return;
       }
-
       products = [...products, newProduct];
       await AsyncStorage.setItem('my-key', JSON.stringify(products));
       console.log('Produto adicionado à sacola:', newProduct);
@@ -36,8 +34,7 @@ export const DetalheDosProdutos: React.FC = () => {
       navigation.navigate("Home");
     } catch (error) {
       console.error('Erro ao adicionar o produto à sacola:', error);
-    }
-  };
+    }};
 
   return (
     <View style={s.container}>

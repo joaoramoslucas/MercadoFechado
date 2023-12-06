@@ -28,8 +28,8 @@ export const s = StyleSheet.create({
       color: '#888',
     },
     productImage: {
-      width: 50,
-      height: 50,
+      width: 100,
+      height: 100,
       borderRadius: 4,
     },
     quantityContainer: {
@@ -41,7 +41,6 @@ export const s = StyleSheet.create({
       marginRight: 8,
     },
     button: {
-      width: '30%',
       height: 30,
       padding: 5,
       borderRadius: 5,
@@ -51,9 +50,8 @@ export const s = StyleSheet.create({
       fontSize: 15,
       fontWeight: "bold",
       fontFamily: 'Montserrat',
-      position: 'absolute', 
       bottom: 1,
-      marginLeft: 130,
+      marginLeft: 30
     },
     sacola: {
       fontWeight: "bold",
@@ -63,6 +61,19 @@ export const s = StyleSheet.create({
       height: 50,
       width: '100%',
       fontSize: 20,
+    },
+    fim: {
+      height: 30,
+      padding: 5,
+      borderRadius: 5,
+      backgroundColor: 'green',
+      textAlign: "center",
+      color: "white",
+      fontSize: 15,
+      fontWeight: "bold",
+      fontFamily: 'Montserrat', 
+      bottom: 1,
+      marginRight: 30
     }
   });
   

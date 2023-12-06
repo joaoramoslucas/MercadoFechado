@@ -25,7 +25,7 @@ export const Bag = () => {
     } catch (error) {
       console.error('Erro ao carregar a sacola:', error);
     }
-  }, []);
+  }, [products]);
   const clearBag = async () => {
     try {
       await AsyncStorage.removeItem('my-key');
@@ -45,7 +45,6 @@ export const Bag = () => {
     setProducts(updatedProducts);
     AsyncStorage.setItem('my-key', JSON.stringify(updatedProducts));
   };
-
   return (
     <View style={s.container}>
       <Text style={s.sacola}>Sacola:</Text>
@@ -54,7 +53,11 @@ export const Bag = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View style={s.productContainer}>
-            <Image source={{ uri: item.thumbnail }} style={s.productImage} />
+            <Image
+              source={{ uri: item.thumbnail }}
+              style={s.productImage}
+              onError={(error) => console.error('Erro ao carregar imagem:', error.nativeEvent.error)}
+            />
             <View style={s.productInfo}>
               <Text style={s.productName}>{item.nome}</Text>
               <Text style={s.productPrice}>
@@ -70,9 +73,14 @@ export const Bag = () => {
           </View>
         )}
       />
-      <TouchableOpacity onPress={clearBag}>
-        <Text style={s.button} >Limpar Sacola</Text>
-      </TouchableOpacity>
+      <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between' }}>
+        <TouchableOpacity onPress={clearBag}>
+          <Text style={s.button} >Limpar Sacola</Text>
+        </TouchableOpacity>
+        <TouchableOpacity >
+          <Text style={s.fim} > Finalizar Compra </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

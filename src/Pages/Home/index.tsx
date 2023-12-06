@@ -26,9 +26,7 @@ export const Home = (): JSX.Element => {
 
     api(minhaConsulta)
       .then((data) => {
-        // Atualize o estado com os dados retornados
         setProducts(data);
-        // Lide com erros, se necessário
       })
       .catch((error) => {
         console.error("Ocorreu um erro:", error);
@@ -37,11 +35,9 @@ export const Home = (): JSX.Element => {
         setLoad(false);
       });
   };
-
   const handleSearch = (text: string) => {
     setSearchText(text);
   };
-
   const filterProducts = (data: Product[], searchText: string) => {
     const filtered = data.filter((product) =>
       product.nome && product.nome.toLowerCase().includes(searchText.toLowerCase())
