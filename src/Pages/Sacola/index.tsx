@@ -45,6 +45,16 @@ export const Bag = () => {
     setProducts(updatedProducts);
     AsyncStorage.setItem('my-key', JSON.stringify(updatedProducts));
   };
+  const decreaseQuantity = (productId: string) => {
+    const updatedProducts = products.map((product) => {
+      if (product.id === productId && product.quantidade > 0) {
+        return { ...product, quantidade: product.quantidade - 1 };
+      }
+      return product;
+    });
+    setProducts(updatedProducts);
+    AsyncStorage.setItem('my-key', JSON.stringify(updatedProducts));
+  };
   return (
     <View style={s.container}>
       <Text style={s.sacola}>Sacola:</Text>
@@ -65,19 +75,22 @@ export const Bag = () => {
               </Text>
               <View style={s.quantityContainer}>
                 <Text style={s.quantityText}>Quantidade: {item.quantidade}</Text>
+                <TouchableOpacity onPress={() => decreaseQuantity(item.id)}>
+                  <Text style={s.quantityButton}>-</Text>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => increaseQuantity(item.id)}>
-                  <Text>+</Text>
+                  <Text style={s.botaoAdd}>+</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
         )}
       />
-      <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between' }}>
+      <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
         <TouchableOpacity onPress={clearBag} style={s.button} >
           <Text style={s.texto}>Limpar Sacola</Text>
         </TouchableOpacity>
-        <TouchableOpacity  style={s.fim}>
+        <TouchableOpacity style={s.fim}>
           <Text style={s.texto}> Finalizar Compra </Text>
         </TouchableOpacity>
       </View>

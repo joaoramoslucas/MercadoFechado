@@ -39,15 +39,6 @@ export const s = StyleSheet.create({
     height: 80,
     borderRadius: 8,
   },
-  quantityContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 8,
-  },
-  quantityText: {
-    marginRight: 8,
-    color: 'black', 
-  },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -77,4 +68,24 @@ export const s = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
   },
+  quantityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  quantityText: {
+    fontWeight: 'bold',
+    fontSize: 15,
+    marginRight: 8,
+  },
+  quantityButton: {
+    fontSize: 30,
+    paddingLeft: 100,
+    color: 'red', 
+  },
+    botaoAdd : {
+    fontSize: 20,
+    paddingLeft: 30,
+    color: 'green', 
+  },
+  
 });
