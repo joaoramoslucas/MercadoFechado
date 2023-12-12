@@ -21,7 +21,8 @@ export const Bag = () => {
         const parsedProducts = storedProducts ? JSON.parse(storedProducts) : [];
         const productWithPrice = parsedProducts.map((product) => ({
           ...product,
-          preco: product.price || 0,
+          preco: product.price,
+          nome: product.title,
         }));
         setProducts(productWithPrice);
       };
