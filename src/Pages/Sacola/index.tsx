@@ -19,7 +19,11 @@ export const Bag = () => {
       const fetchProducts = async () => {
         const storedProducts = await AsyncStorage.getItem('my-key');
         const parsedProducts = storedProducts ? JSON.parse(storedProducts) : [];
-        setProducts(parsedProducts);
+        const productWithPrice = parsedProducts.map((product) => ({
+          ...product,
+          preco: product.price || 0,
+        }));
+        setProducts(productWithPrice);
       };
       fetchProducts();
     } catch (error) {
