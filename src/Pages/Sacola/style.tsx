@@ -1,79 +1,80 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const s = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 16,
-    },
-    productContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      borderBottomWidth: 1,
-      borderColor: '#ddd',
-      paddingVertical: 8,
-      marginBottom: 8,
-    },
-    productInfo: {
-      flex: 1,
-      marginLeft: 8,
-    },
-    productName: {
-      fontSize: 16,
-      fontWeight: 'bold',
-    },
-    productPrice: {
-      fontSize: 14,
-      color: '#888',
-    },
-    productImage: {
-      width: 100,
-      height: 100,
-      borderRadius: 4,
-    },
-    quantityContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    quantityText: {
-      fontSize: 14,
-      marginRight: 8,
-    },
-    button: {
-      height: 30,
-      padding: 5,
-      borderRadius: 5,
-      backgroundColor: 'red',
-      textAlign: "center",
-      color: "white",
-      fontSize: 15,
-      fontWeight: "bold",
-      fontFamily: 'Montserrat',
-      bottom: 1,
-      marginLeft: 30
-    },
-    sacola: {
-      fontWeight: "bold",
-      color: 'black',
-      textAlign: "center",
-      fontFamily: 'Montserrat',
-      height: 50,
-      width: '100%',
-      fontSize: 20,
-    },
-    fim: {
-      height: 30,
-      padding: 5,
-      borderRadius: 5,
-      backgroundColor: 'green',
-      textAlign: "center",
-      color: "white",
-      fontSize: 15,
-      fontWeight: "bold",
-      fontFamily: 'Montserrat', 
-      bottom: 1,
-      marginRight: 30
-    }
-  });
-  
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: '#F5F5F5',
+  },
+  sacola: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    color: 'black',
+  },
+  productContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFF', 
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 12,
+    elevation: 2, 
+  },
+  productInfo: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  productName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black', 
+  },
+  productPrice: {
+    fontSize: 16,
+    color: 'black', 
+  },
+  productImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 8,
+  },
+  quantityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  quantityText: {
+    marginRight: 8,
+    color: 'black', 
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 16,
+  },
+  button: {
+    backgroundColor: '#f14242',
+    color: '#fff',
+    padding: 12,
+    borderRadius: 8,
+    textAlign: 'center',
+    flex: 1,
+    marginRight: 8,
+    fontWeight: 'bold',
+  },
+  fim: {
+    backgroundColor: '#78c30c',
+    color: 'black',
+    padding: 12,
+    borderRadius: 8,
+    textAlign: 'center',
+    flex: 1,
+    fontWeight: 'bold',
+  },
+  texto: {
+    paddingLeft: 27,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+});

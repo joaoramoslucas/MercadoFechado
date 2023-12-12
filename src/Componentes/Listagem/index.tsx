@@ -17,7 +17,8 @@ export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail, sol
     const navigation = useNavigation()
 
     function retorno() {
-        navigation.navigate("Produto", {id: id,
+        navigation.navigate("Produto", {
+            id: id,
             title: title,
             price: price,
             sold_quantity: sold_quantity,

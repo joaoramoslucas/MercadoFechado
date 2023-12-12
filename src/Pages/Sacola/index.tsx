@@ -74,11 +74,11 @@ export const Bag = () => {
         )}
       />
       <View style={{flexDirection:'row', width:'100%', justifyContent:'space-between' }}>
-        <TouchableOpacity onPress={clearBag}>
-          <Text style={s.button} >Limpar Sacola</Text>
+        <TouchableOpacity onPress={clearBag} style={s.button} >
+          <Text style={s.texto}>Limpar Sacola</Text>
         </TouchableOpacity>
-        <TouchableOpacity >
-          <Text style={s.fim} > Finalizar Compra </Text>
+        <TouchableOpacity  style={s.fim}>
+          <Text style={s.texto}> Finalizar Compra </Text>
         </TouchableOpacity>
       </View>
     </View>
