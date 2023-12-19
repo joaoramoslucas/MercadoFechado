@@ -30,7 +30,6 @@ export const DetalheDosProdutos: React.FC = () => {
       products = [...products, newProduct];
       await AsyncStorage.setItem('my-key', JSON.stringify(products));
       console.log('Produto adicionado à sacola:', newProduct);
-      
       navigation.navigate("Home");
     } catch (error) {
       console.error('Erro ao adicionar o produto à sacola:', error);
