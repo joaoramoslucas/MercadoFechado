@@ -49,3 +49,4 @@ export const s = StyleSheet.create({
         backgroundColor: 'rgba(237, 237, 237, 0.60)',
     },
 });
+ 
