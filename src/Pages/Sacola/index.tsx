@@ -23,6 +23,7 @@ export const Bag = () => {
           ...product,
           preco: product.price,
           nome: product.title,
+          quantidade: product.quantidade || 1,
         }));
         setProducts(productWithPrice);
       };
@@ -31,6 +32,15 @@ export const Bag = () => {
       console.error('Erro ao carregar a sacola:', error);
     }
   }, [products]);
+  const calcularTotal = (): string => {
+    const total = products.reduce((accumulator, product) => {
+      if (product.quantidade > 0) {
+        return accumulator + (product.preco * product.quantidade);
+      }
+      return accumulator;
+    }, 0);
+    return total.toFixed(2);
+  };
   const clearBag = async () => {
     try {
       await AsyncStorage.removeItem('my-key');
@@ -43,7 +53,7 @@ export const Bag = () => {
   const increaseQuantity = (productId: string) => {
     const updatedProducts = products.map((product) => {
       if (product.id === productId) {
-        return { ...product, quantidade: product.quantidade + 1 };
+        return { ...product, quantidade: product.quantidade + 1 || 1 };
       }
       return product;
     });
@@ -99,6 +109,7 @@ export const Bag = () => {
           <Text style={s.texto}> Finalizar Compra </Text>
         </TouchableOpacity>
       </View>
+      <Text style={s.total}>Total: R${calcularTotal()}</Text>
     </View>
   );
 };

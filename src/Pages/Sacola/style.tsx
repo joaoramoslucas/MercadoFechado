@@ -87,5 +87,11 @@ export const s = StyleSheet.create({
     paddingLeft: 30,
     color: 'green', 
   },
+  total: {
+    color: 'green',
+    fontSize: 35,
+    textAlign: 'center',
+    padding: 15
+  }
   
 });
