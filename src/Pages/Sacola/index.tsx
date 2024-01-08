@@ -2,36 +2,45 @@ import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 
+import SearchBar from '../../Componentes/SearchBar';
 import { s } from '../Sacola/style'
 
-type Product = {
+interface Product {
   id: string;
   nome: string;
   preco: number;
   quantidade: number;
   thumbnail: string;
-};
+  onAddToCart: (product: Product) => void;
+}
 
 export const Bag = () => {
   const [products, setProducts] = useState<Product[]>([]);
+
   useEffect(() => {
-    try {
-      const fetchProducts = async () => {
+    const fetchProducts = async () => {
+      try {
         const storedProducts = await AsyncStorage.getItem('my-key');
         const parsedProducts = storedProducts ? JSON.parse(storedProducts) : [];
-        const productWithPrice = parsedProducts.map((product) => ({
-          ...product,
-          preco: product.price,
+        
+        // Atualize as propriedades dos produtos conforme necessário
+        const updatedProducts = parsedProducts.map((product: any) => ({
+          id: product.id,
           nome: product.title,
+          preco: product.price,
           quantidade: product.quantidade || 1,
+          thumbnail: product.thumbnail,
         }));
-        setProducts(productWithPrice);
-      };
-      fetchProducts();
-    } catch (error) {
-      console.error('Erro ao carregar a sacola:', error);
-    }
-  }, [products]);
+
+        setProducts(updatedProducts);
+      } catch (error) {
+        console.error('Erro ao carregar a sacola:', error);
+      }
+    };
+    
+    fetchProducts();
+  }, []);
+
   const calcularTotal = (): string => {
     const total = products.reduce((accumulator, product) => {
       if (product.quantidade > 0) {
@@ -41,6 +50,7 @@ export const Bag = () => {
     }, 0);
     return total.toFixed(2);
   };
+
   const clearBag = async () => {
     try {
       await AsyncStorage.removeItem('my-key');
@@ -50,6 +60,7 @@ export const Bag = () => {
       console.error('Erro ao limpar a sacola:', error);
     }
   };
+
   const increaseQuantity = (productId: string) => {
     const updatedProducts = products.map((product) => {
       if (product.id === productId) {
@@ -60,6 +71,7 @@ export const Bag = () => {
     setProducts(updatedProducts);
     AsyncStorage.setItem('my-key', JSON.stringify(updatedProducts));
   };
+
   const decreaseQuantity = (productId: string) => {
     const updatedProducts = products.map((product) => {
       if (product.id === productId && product.quantidade > 0) {
@@ -70,6 +82,7 @@ export const Bag = () => {
     setProducts(updatedProducts);
     AsyncStorage.setItem('my-key', JSON.stringify(updatedProducts));
   };
+
   return (
     <View style={s.container}>
       <Text style={s.sacola}>Sacola:</Text>

@@ -1,4 +1,5 @@
 export const api = (query: string): Promise<any> => {
+
   return new Promise((resolve, reject) => {
     fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${query}`)
       .then(response => {

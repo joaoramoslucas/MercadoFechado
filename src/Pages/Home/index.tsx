@@ -37,7 +37,7 @@ export const Home = (): JSX.Element => {
   };
 
   const handleSearch = (text: string) => {
-    const trimmedSearchText = text.trim().toLowerCase();
+    const trimmedSearchText = text.toLowerCase();
     const filtered = products.filter(
       (product) =>
         product.nome &&
