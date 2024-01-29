@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { ProductItem } from '../BagActions/RenderizarProdutos'; // Certifique-se de importar corretamente o componente ProductItem
+import { ProductItem } from '../RenderizarProdutos'; // Certifique-se de importar corretamente o componente ProductItem
 
 type Product = {
     id: string;

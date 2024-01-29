@@ -4,7 +4,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { s } from '../Sacola/style'
-import ProductList from "../../Componentes/FlatList";
+import ProductList from "../../Componentes/BagActions/FlatList";
 import { BagActions } from "../../Componentes/BagActions/ClearBag";
 
 interface Product {
