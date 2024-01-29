@@ -1,12 +1,10 @@
 import React, { useState } from "react";
+import { View, Text, FlatList } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
-
 
 import { s } from '../Sacola/style'
-import { useFocusEffect } from "@react-navigation/native";
 import { BagActions } from "../../Componentes/BagActions/ClearBag";
-import { QuantityButtons } from "../../Componentes/BagActions/SomarSubtrairQuantidade";
 import { ProductItem } from "../../Componentes/BagActions/RenderizarProdutos";
 
 interface Product {
@@ -22,15 +20,11 @@ export const Bag = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useFocusEffect(
-
     React.useCallback(() => {
       const fetchProducts = async () => {
         try {
           const storedProducts = await AsyncStorage.getItem('my-key');
           const parsedProducts = storedProducts ? JSON.parse(storedProducts) : [];
-          console.log(storedProducts, parsedProducts, 2);
-
-          // Atualize as propriedades dos produtos conforme necessário
           const updatedProducts = await parsedProducts.map((product: any) => ({
             id: product.id,
             nome: product.nome,
@@ -41,11 +35,9 @@ export const Bag = () => {
           setProducts(updatedProducts);
         } catch (error) {
           console.error('Erro ao carregar a sacola:', error);
-        }
-      };
+        }};
       fetchProducts();
-    }, [])
-  )
+    }, []))
 
   const atualizarSacola = async (updateProducts: Product[]) => {
     setProducts(updateProducts);
@@ -66,7 +58,6 @@ export const Bag = () => {
     try {
       await AsyncStorage.removeItem('my-key');
       setProducts([]);
-      console.log('Sacola limpa');
     } catch (error) {
       console.error('Erro ao limpar a sacola:', error);
     }
@@ -91,7 +82,6 @@ export const Bag = () => {
     });
     setProducts(updatedProducts);
     AsyncStorage.setItem('my-key', JSON.stringify(updatedProducts));
-
   };
 
   return (
