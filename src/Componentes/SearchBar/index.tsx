@@ -1,9 +1,7 @@
-// SearchBar.tsx
-
+// Seu componente SearchBar.tsx
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, FlatList, Text, Image, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
 
 import { api } from '../../Service/';
 
@@ -22,9 +20,8 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onAddToCart }) => {
   const [searchText, setSearchText] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
-  const navigation = useNavigation();
 
-  const handleSearch = async () => {
+  async function handleSearch() {
     try {
       if (typeof searchText === 'string') {
         const cleanedSearchText = searchText.trim();
@@ -46,41 +43,41 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onAddToCart }) => {
     } catch (error) {
       console.error("Ocorreu um erro na pesquisa:", error);
     }
-  };
+  }
 
   const handleAddToCart = (product: Product) => {
-    // Adiciona o produto à sacola
-    onAddToCart(product);
+    const { title, price, thumbnail } = product;
+    const productAddToCart: Product = { id: Date.now().toString(), title, price, thumbnail }
+
+    onAddToCart(productAddToCart);
     console.log('Produto adicionado à sacola na tela de pesquisa:', product);
   };
 
   return (
     <View>
-      <View style={styles.searchContainer}>
+      <View style={style.searchContainer}>
         <TextInput
-          style={styles.input}
+          style={style.input}
           placeholder="Pesquisar..."
           value={searchText}
           onChangeText={setSearchText}
         />
-
-        <TouchableOpacity style={styles.button} onPress={handleSearch}>
+        <TouchableOpacity style={style.button} onPress={handleSearch}>
           <Icon name="search" size={24} color="black" />
         </TouchableOpacity>
       </View>
-
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={styles.productItem}>
-            <Image style={styles.productImage} source={{ uri: item.thumbnail }} />
-            <View style={styles.productDetails}>
-              <Text style={styles.productTitle}>{item.title}</Text>
-              <Text style={styles.productPrice}>R$ {item.price.toFixed(2)}</Text>
+          <View style={style.productItem}>
+            <Image style={style.productImage} source={{ uri: item.thumbnail }} />
+            <View style={style.productDetails}>
+              <Text style={style.productTitle}>{item.title}</Text>
+              <Text style={style.productPrice}>R$ {item.price.toFixed(2)}</Text>
             </View>
-            <TouchableOpacity style={styles.addToCartButton} onPress={() => handleAddToCart(item)}>
-              <Text style={styles.addToCartButtonText}>Adicionar à Sacola</Text>
+            <TouchableOpacity style={style.addToCartButton} onPress={() => handleAddToCart(item)}>
+              <Text style={style.addToCartButtonText}>Adicionar à Sacola</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -89,7 +86,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onAddToCart }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',

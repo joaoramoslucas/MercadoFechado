@@ -13,7 +13,7 @@ interface ListagemProps {
     thumbnail: string
     condition: string
 }
-export const Listagem: React.FC<ListagemProps> = ({ title, price, thumbnail, sold_quantity, condition, id }) => {
+export const Listagem: React.FC<ListagemProps> = ({ id, title, price, sold_quantity, thumbnail, condition }) => {
     const navigation = useNavigation()
 
     function retorno() {

@@ -21,7 +21,7 @@ export const DetalheDosProdutos: React.FC = () => {
     try {
       const existingItems = await AsyncStorage.getItem('my-key');
       let products = existingItems ? JSON.parse(existingItems) : [];
-      const newProduct = { id: String(Math.random()), title: title, price: price, thumbnail: thumbnail }; 
+      const newProduct = { id: String(Math.random()), nome: title, preco: price, thumbnail: thumbnail }; 
 
       if (products.length >= 10) {
         console.log('Limite de 10 produtos atingido. Não é possível adicionar mais produtos.');

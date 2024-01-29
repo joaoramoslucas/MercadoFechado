@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 
-import SearchBar from '../../Componentes/SearchBar';
 import { s } from '../Sacola/style'
+import { useFocusEffect } from "@react-navigation/native";
 
 interface Product {
   id: string;
@@ -17,32 +17,39 @@ interface Product {
 export const Bag = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
+  useFocusEffect(
+
+  React.useCallback(() => {
     const fetchProducts = async () => {
       try {
         const storedProducts = await AsyncStorage.getItem('my-key');
         const parsedProducts = storedProducts ? JSON.parse(storedProducts) : [];
+        console.log(storedProducts, parsedProducts, 2);
         
         // Atualize as propriedades dos produtos conforme necessário
-        const updatedProducts = parsedProducts.map((product: any) => ({
+        const updatedProducts = await parsedProducts.map((product: any) => ({
           id: product.id,
-          nome: product.title,
-          preco: product.price,
+          nome: product.nome,
+          preco: product.preco,
           quantidade: product.quantidade || 1,
           thumbnail: product.thumbnail,
         }));
-
-        setProducts(updatedProducts);
+          setProducts(updatedProducts);
       } catch (error) {
         console.error('Erro ao carregar a sacola:', error);
       }
     };
-    
     fetchProducts();
-  }, []);
+  }, [])
+  )
 
+  const atualizarSacola = async (updateProducts: Product[]) => {
+    setProducts(updateProducts);
+    await AsyncStorage.setItem('my-key', JSON.stringify(updateProducts));
+  }
+  
   const calcularTotal = (): string => {
-    const total = products.reduce((accumulator, product) => {
+    const total = products.reduce((accumulator, product) => {      
       if (product.quantidade > 0) {
         return accumulator + (product.preco * product.quantidade);
       }
@@ -60,18 +67,17 @@ export const Bag = () => {
       console.error('Erro ao limpar a sacola:', error);
     }
   };
-
+  
   const increaseQuantity = (productId: string) => {
     const updatedProducts = products.map((product) => {
-      if (product.id === productId) {
+      if (product.id === productId) {        
         return { ...product, quantidade: product.quantidade + 1 || 1 };
       }
       return product;
-    });
-    setProducts(updatedProducts);
-    AsyncStorage.setItem('my-key', JSON.stringify(updatedProducts));
+    });    
+    atualizarSacola(updatedProducts);
   };
-
+  
   const decreaseQuantity = (productId: string) => {
     const updatedProducts = products.map((product) => {
       if (product.id === productId && product.quantidade > 0) {
@@ -81,6 +87,7 @@ export const Bag = () => {
     });
     setProducts(updatedProducts);
     AsyncStorage.setItem('my-key', JSON.stringify(updatedProducts));
+    
   };
 
   return (
