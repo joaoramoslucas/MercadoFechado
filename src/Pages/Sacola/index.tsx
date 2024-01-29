@@ -7,6 +7,7 @@ import { s } from '../Sacola/style'
 import { useFocusEffect } from "@react-navigation/native";
 import { BagActions } from "../../Componentes/BagActions/ClearBag";
 import { QuantityButtons } from "../../Componentes/BagActions/SomarSubtrairQuantidade";
+import { ProductItem } from "../../Componentes/BagActions/RenderizarProdutos";
 
 interface Product {
   id: string;
@@ -22,37 +23,37 @@ export const Bag = () => {
 
   useFocusEffect(
 
-  React.useCallback(() => {
-    const fetchProducts = async () => {
-      try {
-        const storedProducts = await AsyncStorage.getItem('my-key');
-        const parsedProducts = storedProducts ? JSON.parse(storedProducts) : [];
-        console.log(storedProducts, parsedProducts, 2);
-        
-        // Atualize as propriedades dos produtos conforme necessário
-        const updatedProducts = await parsedProducts.map((product: any) => ({
-          id: product.id,
-          nome: product.nome,
-          preco: product.preco,
-          quantidade: product.quantidade || 1,
-          thumbnail: product.thumbnail,
-        }));
+    React.useCallback(() => {
+      const fetchProducts = async () => {
+        try {
+          const storedProducts = await AsyncStorage.getItem('my-key');
+          const parsedProducts = storedProducts ? JSON.parse(storedProducts) : [];
+          console.log(storedProducts, parsedProducts, 2);
+
+          // Atualize as propriedades dos produtos conforme necessário
+          const updatedProducts = await parsedProducts.map((product: any) => ({
+            id: product.id,
+            nome: product.nome,
+            preco: product.preco,
+            quantidade: product.quantidade || 1,
+            thumbnail: product.thumbnail,
+          }));
           setProducts(updatedProducts);
-      } catch (error) {
-        console.error('Erro ao carregar a sacola:', error);
-      }
-    };
-    fetchProducts();
-  }, [])
+        } catch (error) {
+          console.error('Erro ao carregar a sacola:', error);
+        }
+      };
+      fetchProducts();
+    }, [])
   )
 
   const atualizarSacola = async (updateProducts: Product[]) => {
     setProducts(updateProducts);
     await AsyncStorage.setItem('my-key', JSON.stringify(updateProducts));
   }
-  
+
   const calcularTotal = (): string => {
-    const total = products.reduce((accumulator, product) => {      
+    const total = products.reduce((accumulator, product) => {
       if (product.quantidade > 0) {
         return accumulator + (product.preco * product.quantidade);
       }
@@ -70,17 +71,17 @@ export const Bag = () => {
       console.error('Erro ao limpar a sacola:', error);
     }
   };
-  
+
   const increaseQuantity = (productId: string) => {
     const updatedProducts = products.map((product) => {
-      if (product.id === productId) {        
+      if (product.id === productId) {
         return { ...product, quantidade: product.quantidade + 1 || 1 };
       }
       return product;
-    });    
+    });
     atualizarSacola(updatedProducts);
   };
-  
+
   const decreaseQuantity = (productId: string) => {
     const updatedProducts = products.map((product) => {
       if (product.id === productId && product.quantidade > 0) {
@@ -90,7 +91,7 @@ export const Bag = () => {
     });
     setProducts(updatedProducts);
     AsyncStorage.setItem('my-key', JSON.stringify(updatedProducts));
-    
+
   };
 
   return (
@@ -100,27 +101,14 @@ export const Bag = () => {
         data={products}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={s.productContainer}>
-            <Image
-              source={{ uri: item.thumbnail }}
-              style={s.productImage}
-              onError={(error) => console.error('Erro ao carregar imagem:', error.nativeEvent.error)}
-            />
-            <View style={s.productInfo}>
-              <Text style={s.productName}>{item.nome}</Text>
-              <Text style={s.productPrice}>
-                {item.preco ? `R$${item.preco.toFixed(2)}` : 'Preço Indefinido'}
-              </Text>
-            <QuantityButtons 
-            quantity={item.quantidade}
-            increase={() => increaseQuantity(item.id)}
-            decrease={() => decreaseQuantity(item.id)}
-            />
-            </View>
-          </View>
+          <ProductItem
+            item={item}
+            increaseQuantity={increaseQuantity}
+            decreaseQuantity={decreaseQuantity}
+          />
         )}
       />
-      <BagActions clearBag={clearBag}/>
+      <BagActions clearBag={clearBag} />
       <Text style={s.total}>Total: R${calcularTotal()}</Text>
     </View>
   );
