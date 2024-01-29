@@ -4,8 +4,8 @@ import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { s } from '../Sacola/style'
+import ProductList from "../../Componentes/FlatList";
 import { BagActions } from "../../Componentes/BagActions/ClearBag";
-import { ProductItem } from "../../Componentes/BagActions/RenderizarProdutos";
 
 interface Product {
   id: string;
@@ -87,17 +87,7 @@ export const Bag = () => {
   return (
     <View style={s.container}>
       <Text style={s.sacola}>Sacola:</Text>
-      <FlatList
-        data={products}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <ProductItem
-            item={item}
-            increaseQuantity={() => increaseQuantity(item.id)}
-            decreaseQuantity={() => decreaseQuantity(item.id)}
-          />
-        )}
-      />
+      <ProductList products={products} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} />
       <BagActions clearBag={clearBag} />
       <Text style={s.total}>Total: R${calcularTotal()}</Text>
     </View>

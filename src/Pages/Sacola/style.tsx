@@ -66,7 +66,7 @@ export const s = StyleSheet.create({
     fontWeight: 'bold',
   },
   texto: {
-    paddingLeft: 27,
+    paddingLeft: 30,
     fontWeight: 'bold',
     color: 'black',
   },

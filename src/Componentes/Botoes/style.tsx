@@ -73,7 +73,7 @@ export const s = StyleSheet.create({
   texto: {
     width: '95%',
     height: 35,
-    borderRadius: 5,
+    borderRadius: 20,
     backgroundColor: 'green',
     marginLeft: 10,
     textAlign: "center",
