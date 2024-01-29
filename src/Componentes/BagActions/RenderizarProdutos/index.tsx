@@ -2,8 +2,20 @@ import { s } from '../../../Pages/Sacola/style'
 import { View, Image, Text } from "react-native";
 import { QuantityButtons } from "../SomarSubtrairQuantidade";
 
+type Product = {
+    id: string;
+    nome: string;
+    preco: number;
+    quantidade: number;
+    thumbnail: string;
+}
+type ProductItemProps = {
+    item: Product;
+    increaseQuantity: () => void;
+    decreaseQuantity: () => void;
+}
 
-export const ProductItem = ({ item, increaseQuantity, decreaseQuantity }) => (
+export const ProductItem: React.FC<ProductItemProps> = ({ item, increaseQuantity, decreaseQuantity }) => (
     <View style={s.productContainer}>
         <Image
             source={{ uri: item.thumbnail }}

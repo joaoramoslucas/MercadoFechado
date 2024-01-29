@@ -89,12 +89,12 @@ export const Bag = () => {
       <Text style={s.sacola}>Sacola:</Text>
       <FlatList
         data={products}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <ProductItem
             item={item}
-            increaseQuantity={increaseQuantity}
-            decreaseQuantity={decreaseQuantity}
+            increaseQuantity={() => increaseQuantity(item.id)}
+            decreaseQuantity={() => decreaseQuantity(item.id)}
           />
         )}
       />
