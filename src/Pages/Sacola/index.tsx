@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 
+
 import { s } from '../Sacola/style'
 import { useFocusEffect } from "@react-navigation/native";
+import { BagActions } from "../../Componentes/BagActions/ClearBag";
+import { QuantityButtons } from "../../Componentes/BagActions/SomarSubtrairQuantidade";
 
 interface Product {
   id: string;
@@ -108,27 +111,16 @@ export const Bag = () => {
               <Text style={s.productPrice}>
                 {item.preco ? `R$${item.preco.toFixed(2)}` : 'Preço Indefinido'}
               </Text>
-              <View style={s.quantityContainer}>
-                <Text style={s.quantityText}>Quantidade: {item.quantidade}</Text>
-                <TouchableOpacity onPress={() => decreaseQuantity(item.id)}>
-                  <Text style={s.quantityButton}>-</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => increaseQuantity(item.id)}>
-                  <Text style={s.botaoAdd}>+</Text>
-                </TouchableOpacity>
-              </View>
+            <QuantityButtons 
+            quantity={item.quantidade}
+            increase={() => increaseQuantity(item.id)}
+            decrease={() => decreaseQuantity(item.id)}
+            />
             </View>
           </View>
         )}
       />
-      <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
-        <TouchableOpacity onPress={clearBag} style={s.button} >
-          <Text style={s.texto}>Limpar Sacola</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={s.fim}>
-          <Text style={s.texto}> Finalizar Compra </Text>
-        </TouchableOpacity>
-      </View>
+      <BagActions clearBag={clearBag}/>
       <Text style={s.total}>Total: R${calcularTotal()}</Text>
     </View>
   );
