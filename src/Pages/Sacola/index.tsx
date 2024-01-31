@@ -75,7 +75,7 @@ export const Bag = () => {
 
   const decreaseQuantity = (productId: string) => {
     const updatedProducts = products.map((product) => {
-      if (product.id === productId && product.quantidade > 0) {
+      if (product.id === productId && product.quantidade > 1) {
         return { ...product, quantidade: product.quantidade - 1 };
       }
       return product;
