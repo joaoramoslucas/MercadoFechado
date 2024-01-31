@@ -1,7 +1,7 @@
-// Seu componente SearchBar.tsx
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, FlatList, Text, Image, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, FlatList, Text, Image, ActivityIndicator, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 import { api } from '../../Service/';
 
@@ -14,22 +14,29 @@ interface Product {
 
 interface SearchBarProps {
   onSearch: (products: Product[]) => void;
-  onAddToCart: (product: Product) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onAddToCart }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [searchText, setSearchText] = useState('');
+  const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
+  const navigation = useNavigation();
 
-  async function handleSearch() {
+  const handleSearch = async () => {
     try {
-      if (typeof searchText === 'string') {
+      console.log(typeof searchText);
+      
+      if (typeof searchText == 'string') {
         const cleanedSearchText = searchText.trim();
 
         if (cleanedSearchText) {
-          const data = await api(cleanedSearchText);
+          setLoading(true);
 
-          if (Array.isArray(data) && data.length > 0) {
+          const data = await api(cleanedSearchText);
+          console.log(searchText);
+          
+
+          if (data.length > 0 && searchText) {
             setProducts(data);
             onSearch(data);
             console.log('Produtos encontrados:', data);
@@ -38,55 +45,61 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onAddToCart }) => {
             onSearch([]);
             console.log('Nenhum produto encontrado.');
           }
+        } else {
+          setProducts([]);
+          onSearch([]);
+          console.log('Nenhum produto encontrado.');          
         }
       }
     } catch (error) {
       console.error("Ocorreu um erro na pesquisa:", error);
+    } finally {
+      setLoading(false);
     }
-  }
-
-  const handleAddToCart = (product: Product) => {
-    const { title, price, thumbnail } = product;
-    const productAddToCart: Product = { id: Date.now().toString(), title, price, thumbnail }
-
-    onAddToCart(productAddToCart);
-    console.log('Produto adicionado à sacola na tela de pesquisa:', product);
   };
+
+  const renderItem = ({ item }: { item: Product }) => (
+    <TouchableOpacity style={styles.productItem} onPress={() => navigation.navigate('Produto', { productId: item.id })}>
+      <Image style={styles.productImage} source={{ uri: item.thumbnail }} />
+      <View style={styles.productDetails}>
+        <Text style={styles.productTitle}>{item.title}</Text>
+        <Text style={styles.productPrice}>R$ {item.price.toFixed(2)}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 
   return (
     <View>
-      <View style={style.searchContainer}>
+      <View style={styles.searchContainer}>
         <TextInput
-          style={style.input}
+          style={styles.input}
           placeholder="Pesquisar..."
           value={searchText}
           onChangeText={setSearchText}
         />
-        <TouchableOpacity style={style.button} onPress={handleSearch}>
+        <TouchableOpacity style={styles.button} onPress={handleSearch}>
           <Icon name="search" size={24} color="black" />
         </TouchableOpacity>
       </View>
-      <FlatList
-        data={products}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={style.productItem}>
-            <Image style={style.productImage} source={{ uri: item.thumbnail }} />
-            <View style={style.productDetails}>
-              <Text style={style.productTitle}>{item.title}</Text>
-              <Text style={style.productPrice}>R$ {item.price.toFixed(2)}</Text>
-            </View>
-            <TouchableOpacity style={style.addToCartButton} onPress={() => handleAddToCart(item)}>
-              <Text style={style.addToCartButtonText}>Adicionar à Sacola</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      />
+
+      {loading && <ActivityIndicator size="large" color="green" />}
+
+      {!loading && products.length === 0 && (
+        <Text style={styles.noResultsText}>Nenhum resultado encontrado.</Text>
+      )}
+
+      {!loading && products.length > 0 && (
+        <FlatList
+          data={products}
+          keyExtractor={(item) => item.id}
+          renderItem={renderItem}
+        />
+      )}
     </View>
   );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -123,15 +136,11 @@ const style = StyleSheet.create({
     color: 'green',
     marginTop: 5,
   },
-  addToCartButton: {
-    backgroundColor: 'green',
-    padding: 10,
-    borderRadius: 5,
-    marginLeft: 10,
-  },
-  addToCartButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
+  noResultsText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    color: 'gray',
   },
 });
 
