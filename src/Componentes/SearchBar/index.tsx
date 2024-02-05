@@ -45,11 +45,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
             onSearch([]);
             console.log('Nenhum produto encontrado.');
           }
-        } else {
-          setProducts([]);
-          onSearch([]);
-          console.log('Nenhum produto encontrado.');          
-        }
+        } 
       }
     } catch (error) {
       console.error("Ocorreu um erro na pesquisa:", error);
@@ -77,9 +73,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           value={searchText}
           onChangeText={setSearchText}
         />
-        <TouchableOpacity style={styles.button} onPress={handleSearch}>
-          <Icon name="search" size={24} color="black" />
-        </TouchableOpacity>
       </View>
 
       {loading && <ActivityIndicator size="large" color="green" />}

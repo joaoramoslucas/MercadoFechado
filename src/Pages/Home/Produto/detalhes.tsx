@@ -11,7 +11,7 @@ import { formatCurrency } from '../../../Utils/formatCurrency';
 export const DetalheDosProdutos: React.FC = () => {
   const route = useRoute();
   const navigation = useNavigation();
-  const { thumbnail, title, price, sold_quantity } = route.params;
+  const { thumbnail, title, price } = route.params;
 
   const handleBackPress = () => {
     navigation.goBack();
@@ -39,7 +39,6 @@ export const DetalheDosProdutos: React.FC = () => {
     <View style={s.container}>
       <TouchableOpacity onPress={handleBackPress} style={s.headerLeft}>
         <Voltar />
-        <Text style={s.quantidade}>Em estoque: {sold_quantity}</Text>
       </TouchableOpacity>
       <View style={s.containerProduct}>
         <Image style={s.image} source={{ uri: thumbnail.replace(/\w.jpg/gi, 'W.jpg') }} />

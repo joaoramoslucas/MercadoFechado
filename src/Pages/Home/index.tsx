@@ -55,33 +55,6 @@ const getData = () => {
       setLoad(false);
     });
 };
-const handleSearch = (text: string) => {
-  if (typeof text === 'string') {
-    const trimmedSearchText = text.toLowerCase();
-    const filtered = products.filter(
-      (product) =>
-        product.nome &&
-        typeof product.nome === 'string' &&
-        product.nome.toLowerCase().includes(trimmedSearchText)
-    );
-    setFilteredProducts(filtered);
-  }
-};
-const handleAddToCart = async (product: Product) => {
-  try {
-    // Lógica para adicionar o produto à sacola
-    // Vamos assumir que você tem uma chave 'sacola' no AsyncStorage
-    const existingCart = await AsyncStorage.getItem('sacola');
-    const currentCart = existingCart ? JSON.parse(existingCart) : [];
-    const updatedCart = [...currentCart, product];
-
-    await AsyncStorage.setItem('sacola', JSON.stringify(updatedCart));
-
-    console.log('Produto adicionado à sacola:', product);
-  } catch (error) {
-    console.error('Erro ao adicionar o produto à sacola:', error);
-  }
-};
 
 return (
   <View style={{ flex: 1 }}>
@@ -108,7 +81,8 @@ return (
           shadowOpacity: 0.4,
           shadowRadius: 4,
         }}
-          onChangeText={value => search(value)} />
+          placeholder="Pesquise aqui..."
+          onChangeText={value => search(value)}/>
         <FlatList
           data={filteredProducts}
           keyExtractor={(item) => item.id}
